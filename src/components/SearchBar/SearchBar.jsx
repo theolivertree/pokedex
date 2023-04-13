@@ -1,8 +1,10 @@
 import './SearchBar.css'
 import React, {useState} from 'react'
 
-export default function SearchBar() {
+export default function SearchBar(props) {
 
+    let pokeSearch = props.pokeSearch
+    let setPokeSearch = props.setPokeSearch
 
     return (
         <div className='SearchBar'>
@@ -14,7 +16,7 @@ export default function SearchBar() {
             </span>
             <span className='SearchBarSpan'>
                 <label htmlFor="">
-                    <input type="text" value="Search your Pokémon here..." />
+                    <input type="text" value={pokeSearch} onChange={(e) => {setPokeSearch(e.target.value)}} placeholder='Search your Pokémon here...'/>
                 </label>
                 <button>Search</button>
             </span>

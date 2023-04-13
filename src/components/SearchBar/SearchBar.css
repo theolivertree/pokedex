@@ -45,11 +45,14 @@
 }
 
 .SearchBar button {
+    text-decoration: none;
+    font-family: 'DynaPuff', cursive;
     border: none;
     padding: 0.3rem;
     background-color: #08f1f6;
     border-radius: 7px;
     margin: 0px 10px 0px;
+    
 }
 
 .navS {
