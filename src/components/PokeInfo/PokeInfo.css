@@ -1,0 +1,66 @@
+.PokeInfo {
+    flex: 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: 100%;
+    background-color: #3a62a5;
+    width: 100%;
+}
+
+.typeDiv {
+    flex: 1 0;
+    display: flex;
+    flex-flow: row;
+    background-color: #29487e;
+    width: 100%;
+}
+
+.PokeType {
+    flex: 1 0;
+    margin: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 5px;
+    border: 0.1rem solid;
+    border-color: white;
+}
+
+.PokeStats {
+    flex: 1 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.normal {
+    background-color: rgb(190, 153, 140);
+}
+
+.grass {
+    background-color: lightgreen;
+}
+
+.poison {
+    background-color: rgb(221, 64, 221);
+}
+
+.fire {
+    background-color: orangered;
+}
+
+.flying {
+    background-color: rgb(156, 90, 231);
+}
+
+.water {
+    background-color: aqua;
+}
+
+.bug {
+    background-color: rgb(201, 201, 144);
+}
