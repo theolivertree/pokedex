@@ -1,12 +1,13 @@
 .MainSearch {
-    width: 100vw;
-    height: 100vh;
+    height: 100%;
+    width: auto;
+    background-color: blueviolet;
+    margin-bottom: 20px;
 }
 
 .MainContent {
     margin: 6px 0px 6px;
-    width: 100%;
-    height: calc(100vh - 112px);
+    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -16,7 +17,7 @@
     
         .MainContent {
             height: calc(100vh - 156px);
-            width: calc(100vw - 12px);
+            width: calc(100vw - 22px);
             flex-flow: column;
             margin: 6px 6px 0px;
         }

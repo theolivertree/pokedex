@@ -1,5 +1,6 @@
 .PokeID {
     margin-left: 6px;
+    margin-bottom: 6px;
     border-radius: 15px;
     flex: 1 0;
     background-color: #e3e3e3;
@@ -8,28 +9,38 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    overflow: hidden;
+}
+
+.PokeIdImageName {
+    flex: 1 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .PokeID p {
-    margin-top: 20px;
+    margin: 20px 0px 20px;
     flex: 0.1 0;
     background-color: darkgreen;
 }
 
 .PokePhoto {
+    margin: 0px 20px 0px;
     width: 175px;
     background-color: #5fc480;
     border-radius: 15px;
     border: solid black;
-    margin: 20px;
-    flex: 1 0;
 }
 
 .TypeandStatsDiv {
     border-radius: 15px;
     background-color: blue;
-    width: 175px;
-    margin-bottom: 20px;
+    width: clamp(11em, 75%, 24em);
+    height: auto;
+    margin: 20px;
     flex: 2 0;
 }
 
@@ -38,7 +49,23 @@
             width: 100%;
             margin: 0px 12px 0px;
             border-radius: 15px;
-            flex: 0.5 0;
+            flex: 0.7 0;
             height: 100%;
+            flex-flow: row;
         }
+
+    .PokePhoto {
+        height: 175px;
+    }
+
+    .PokeID p {
+        margin: 10px 0px 10px;
+    }
+
+    .TypeandStatsDiv {
+        min-width: 150px;
+        height: 175px;
+        margin: 0px;
+        margin-right: 25px;
+    }
 }
