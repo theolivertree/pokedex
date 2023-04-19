@@ -1,6 +1,5 @@
 .PokeID {
-    margin-left: 6px;
-    margin-bottom: 6px;
+    margin: 6px;
     border-radius: 15px;
     flex: 1 0;
     background-color: #e3e3e3;
@@ -24,7 +23,6 @@
 .PokeID p {
     margin: 20px 0px 20px;
     flex: 0.1 0;
-    background-color: darkgreen;
 }
 
 .PokePhoto {
@@ -37,11 +35,43 @@
 
 .TypeandStatsDiv {
     border-radius: 15px;
-    background-color: blue;
+    background-color: #c5c5c5;
     width: clamp(11em, 75%, 24em);
-    height: auto;
     margin: 20px;
     flex: 2 0;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TypeDiv {
+    flex: 0.1 0;
+    background-color: #5fc480;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.TypeDiv * {
+    color: white;
+}
+
+.StatsDiv {
+    flex: 2;
+    background-color: aqua;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.StatsDiv p {
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 767px) {
@@ -49,7 +79,7 @@
             width: 100%;
             margin: 0px 12px 0px;
             border-radius: 15px;
-            flex: 0.7 0;
+            flex: 0.5 0;
             height: 100%;
             flex-flow: row;
         }
@@ -64,8 +94,26 @@
 
     .TypeandStatsDiv {
         min-width: 150px;
-        height: 175px;
+        height: 200px;
         margin: 0px;
         margin-right: 25px;
+        flex-flow: row;
+    }
+
+    .TypeDiv {
+        flex-flow: column;
+        height: 100%;
+        padding: 10px;
+        flex: 0.8 0;
+    }
+
+    .StatsDiv {
+        height: 100%;
+        flex: 2.5 0;
+    }
+
+    .StatsDiv p {
+        margin: 2px;
+        width: 100%;
     }
 }

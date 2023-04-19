@@ -4,11 +4,9 @@
   font-family: 'DynaPuff', cursive;
 }
 
-:root {
-  height: 50rem;
-  background-color: #002bb9;
-  padding: 0px;
-  margin: 0;
+#root {
+  height: 60rem;
+  background-color: #202020;
 }
 
 ::-webkit-scrollbar {

@@ -1,8 +1,7 @@
 .MainSearch {
     height: 100%;
-    width: auto;
-    background-color: blueviolet;
-    margin-bottom: 20px;
+    display: flex;
+    flex-flow: column;
 }
 
 .MainContent {
@@ -16,7 +15,7 @@
 @media (max-width: 767px) {
     
         .MainContent {
-            height: calc(100vh - 156px);
+            height: 100%;
             width: calc(100vw - 22px);
             flex-flow: column;
             margin: 6px 6px 0px;

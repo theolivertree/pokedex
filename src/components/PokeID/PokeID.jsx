@@ -11,7 +11,18 @@ export default function PokeID() {
                 <p>Bulbasaur</p>
             </div>
             <div className='TypeandStatsDiv'>
-
+                <div className='TypeDiv'>
+                    <p>Teste1</p>
+                    <p>Teste2</p>
+                </div>
+                <div className='StatsDiv'>
+                    <p>teste1</p>
+                    <p>teste2</p>
+                    <p>teste3</p>
+                    <p>teste4</p>
+                    <p>teste5</p>
+                    <p>teste6</p>
+                </div>
             </div>
         </div>
     )
