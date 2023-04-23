@@ -5,6 +5,34 @@ export default function SearchBar(props) {
 
     let pokeSearch = props.pokeSearch
     let setPokeSearch = props.setPokeSearch
+    let pokeSuggestionList = []
+
+    props.initialData.map((pokemon) => {
+        if (pokeSearch != '' && pokemon.name.includes(pokeSearch)) {
+            pokeSuggestionList.push(pokemon.name)
+        }
+    })
+
+    function dropDown(pokeSuggestionList) {
+        let pokeSuggestionID = 0
+        if (pokeSuggestionList.length != 0) {
+
+            return (
+                <div className='dropDown'>
+                    {
+                    
+                        pokeSuggestionList.map((pokeName) => {
+                            pokeSuggestionID++
+                            return <div key={'pokeSuggestionID' + pokeSuggestionID} className='PokeSuggestion'>{pokeName} </div>
+                        })
+                    }
+                </div>
+            )
+        }
+    }
+    
+
+
 
     return (
         <div className='SearchBar'>
@@ -16,7 +44,8 @@ export default function SearchBar(props) {
             </span>
             <span className='SearchBarSpan'>
                 <label htmlFor="">
-                    <input type="text" value={pokeSearch} onChange={(e) => {setPokeSearch(e.target.value)}} placeholder='Search your Pokémon here...'/>
+                    <input type="text" value={pokeSearch} onChange={(e) => { setPokeSearch(e.target.value) }} placeholder='Search your Pokémon here...' />
+                    {dropDown(pokeSuggestionList)}
                 </label>
                 <button>Search</button>
             </span>
