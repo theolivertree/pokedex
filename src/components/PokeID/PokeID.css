@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
+    transition: 0.3s;
 }
 
 .PokeIdImageName {
@@ -23,6 +24,11 @@
 .PokeID p {
     margin: 20px 0px 20px;
     flex: 0.1 0;
+    text-transform: capitalize;
+}
+
+.pokemonName{
+    text-transform: capitalize;
 }
 
 .PokePhoto {
@@ -47,16 +53,37 @@
 }
 
 .TypeDiv {
-    flex: 0.1 0;
-    background-color: #5fc480;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    background-color: white;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.TypeDiv * {
+.Type {
+    text-transform: capitalize;
     color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex: 1 0;
+}
+
+.grass {
+    background-color: #5fc480;
+}
+
+.poison {
+    background-color: purple;
+}
+
+.water {
+    background-color: blue;
 }
 
 .StatsDiv {
@@ -72,6 +99,43 @@
 .StatsDiv p {
     display: flex;
     justify-content: center;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #FFF;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: animloader 2s linear infinite;
+}
+
+.loader::after {
+    animation-delay: 1s;
+}
+
+@keyframes animloader {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
 }
 
 @media (max-width: 767px) {
@@ -103,9 +167,12 @@
     .TypeDiv {
         flex-flow: column;
         height: 100%;
-        padding: 10px;
         flex: 0.8 0;
     }
+
+    .Type {
+        width: 100%;
+}
 
     .StatsDiv {
         height: 100%;

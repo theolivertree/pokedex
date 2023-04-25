@@ -1,29 +1,51 @@
 import './PokeID.css'
 
-export default function PokeID() {
+export default function PokeID(props) {
 
+    let PokeInfoFetchIsLoading = props.PokeInfoFetchIsLoading
 
-    return (
-        <div className='PokeID'>
-            <div className='PokeIdImageName'>
-                <p>ID: 001</p>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="" className='PokePhoto' />
-                <p>Bulbasaur</p>
-            </div>
-            <div className='TypeandStatsDiv'>
-                <div className='TypeDiv'>
-                    <p>Teste1</p>
-                    <p>Teste2</p>
+    if (PokeInfoFetchIsLoading) {
+        return (
+            <span className="loader"></span>
+        )
+    } else {
+
+        let PokeInfoFetchData = props.PokeInfoFetchData
+        let PokeType = PokeInfoFetchData.data.types
+        let PokeStats = PokeInfoFetchData.data.stats
+
+        return (
+            <div className='PokeID'>
+                <div className='PokeIdImageName'>
+                    <p>ID: {PokeInfoFetchData.data.id}</p>
+                    <img src={PokeInfoFetchData.data.sprites.front_default} alt="" className='PokePhoto' />
+                    <p>{PokeInfoFetchData.data.name}</p>
                 </div>
-                <div className='StatsDiv'>
-                    <p>teste1</p>
-                    <p>teste2</p>
-                    <p>teste3</p>
-                    <p>teste4</p>
-                    <p>teste5</p>
-                    <p>teste6</p>
+                <div className='TypeandStatsDiv'>
+                    <div className='TypeDiv'>
+                        {PokeType.map((type) => {
+                            return (
+                                <div
+                                    key={type.type.name + 'typekey'}
+                                    className={'Type ' + type.type.name}>
+                                    {type.type.name}
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className='StatsDiv'>
+                        {PokeStats.map((stat) => {
+                            return (
+                                <p key={stat.stat.name + 'statkey'}>
+                                    {stat.stat.name + ' : ' + stat.base_stat}
+                                </p>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
+
+    
