@@ -1,5 +1,6 @@
 import './SearchBar.css'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { QueryClient } from '@tanstack/react-query'
 
 export default function SearchBar(props) {
 
@@ -7,11 +8,15 @@ export default function SearchBar(props) {
     let setPokeSearch = props.setPokeSearch
     let pokeSuggestionList = []
     let data = props.initialData
-    let searchedPokemonURL = props.searchedPokemonURL
     let setSearchedPokemonURL = props.setSearchedPokemonURL
+    let PokeInfo2FetchData = props.PokeInfo2FetchData
+
+    let setEvolutionURL = props.setEvolutionURL
+
+    let setPokemonID = props.setPokemonID
 
     // Função que gera uma lista com o nome de todos os Pokemons da base de dados
-    props.initialData.map((pokemon) => {
+    data.data.results.map((pokemon) => {
         if (pokeSearch != '' && (String(pokemon.name).toLowerCase()).includes(String(pokeSearch).toLowerCase())) {
             pokeSuggestionList.push(pokemon.name)
         }
@@ -41,14 +46,23 @@ export default function SearchBar(props) {
         }
     }
     
+    // Função que atualiza a URL do Pokemon e invalida as queries
     function buttonClick() {
+
         if (pokeSearch === '') {
             pokeSearch = 'bulbasaur'
         }
-        let selectedPokemon = data.filter(pokemon => pokemon.name === pokeSearch)
-        setSearchedPokemonURL(selectedPokemon[0].url)
-        props.PokeInfoRefetch()
-        props.PokeInfo2Refetch()
+
+        let pokeArray = data.data.results
+        let pokeID = (pokeArray.findIndex(pokemon => pokemon.name === pokeSearch)) + 1
+        setPokemonID(pokeID)
+        setEvolutionURL(PokeInfo2FetchData.data.evolution_chain.url)
+
+        let selectedPokemon = data.data.results.filter((pokemon) => {
+            
+            return pokemon.name === pokeSearch
+        })
+        setSearchedPokemonURL(selectedPokemon[0].url)        
     }
 
 
@@ -72,10 +86,10 @@ export default function SearchBar(props) {
                 <nav className='navS'>
                     <ul className='navList'>
                         <li>
-                        <a href="https://github.com/theolivertree" target=''>GitHub</a>
+                        <a href="https://github.com/theolivertree" target='_blank'>GitHub</a>
                         </li>
                         <li>
-                            <a href="">Contact</a>
+                        <a href="https://www.linkedin.com/in/guilherme-de-oliveira3d/" target='_blank'>Contact</a>
                         </li>
                     </ul>
                 </nav>

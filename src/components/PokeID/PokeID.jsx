@@ -9,7 +9,7 @@ export default function PokeID(props) {
             <span className="loader"></span>
         )
     } else {
-
+        
         let PokeInfoFetchData = props.PokeInfoFetchData
         let PokeType = PokeInfoFetchData.data.types
         let PokeStats = PokeInfoFetchData.data.stats
@@ -21,7 +21,7 @@ export default function PokeID(props) {
                     <img src={PokeInfoFetchData.data.sprites.front_default} alt="" className='PokePhoto' />
                     <p>{PokeInfoFetchData.data.name}</p>
                 </div>
-                <div className='TypeandStatsDiv'>
+                <div className='TypeAndStatsDiv'>
                     <div className='TypeDiv'>
                         {PokeType.map((type) => {
                             return (
@@ -36,7 +36,7 @@ export default function PokeID(props) {
                     <div className='StatsDiv'>
                         {PokeStats.map((stat) => {
                             return (
-                                <p key={stat.stat.name + 'statkey'}>
+                                <p key={stat.stat.name + 'statKey'}>
                                     {stat.stat.name + ' : ' + stat.base_stat}
                                 </p>
                             )

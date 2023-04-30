@@ -1,6 +1,6 @@
 import './MainSearch.css'
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import SearchBar from '../components/SearchBar/SearchBar'
 import PokeID from '../components/PokeID/PokeID'
 import PokeInfos from '../components/PokeInfos/PokeInfos'
@@ -12,33 +12,45 @@ export default function MainSearch() {
     const [pokeSearch, setPokeSearch] = useState('')
 
     //Estado que recebe o URL contendo as informações do Pokemon
-    const [searchedPokemonURL, setSearchedPokemonURL] = useState('https://pokeapi.co/api/v2/pokemon/1')
+    const [searchedPokemonURL, setSearchedPokemonURL] = useState("https://pokeapi.co/api/v2/pokemon/1")
+
+    const [pokemonID, setPokemonID] = useState(1)
+
+    const [evolutionURL, setEvolutionURL] = useState('https://pokeapi.co/api/v2/evolution-chain/1')
 
     // Query "initialPokeFetch"
-    const { isLoading, error, data} = useQuery({
+    const { error, data } = useQuery({
         queryKey: ["initialPokeFetch"],
-        queryFn: () =>
+        queryFn: () => 
             axios
-                .get('https://pokeapi.co/api/v2/pokemon/?limit=20')
-                .then((res) => res.data.results),
+                .get('https://pokeapi.co/api/v2/pokemon/?limit=20'),
     })
 
     // Query que busca as informações do Pokemon
-    const { isLoading: PokeInfoFetchIsLoading, data: PokeInfoFetchData, refetch: PokeInfoRefetch } = useQuery({
-        queryKey: ["PokeInfoFetch"],
-        queryFn: () => axios.get(searchedPokemonURL),
-        refetchOnWindowFocus: false,
+    const { isLoading: PokeInfoFetchIsLoading, data: PokeInfoFetchData, is: PokeInfoFetchIs } = useQuery({
+        queryKey: ["PokeInfoFetch", searchedPokemonURL],
+        queryFn: async () => await
+            axios
+                .get(searchedPokemonURL),
     })
 
     // Query executada logo depois da query acima
-    const { isLoading: PokeInfo2FetchIsLoading, data: PokeInfo2FetchData, refetch: PokeInfo2Refetch } = useQuery({
-        queryKey: ["PokeInfo2Fetch"],
-        queryFn: () => axios.get('https://pokeapi.co/api/v2/pokemon-species/' + PokeInfoFetchData.data.id),
+    const { isLoading: PokeInfo2FetchIsLoading, data: PokeInfo2FetchData, isSuccess: PokeInfo2FetchIsSuccess } = useQuery({
+        queryKey: ["PokeInfo2Fetch", pokemonID],
+        queryFn: async () => await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`),
         refetchOnWindowFocus: false,
-        enabled: !!PokeInfoFetchData,
+        enabled: !PokeInfoFetchIsLoading,
     })
 
-    if (isLoading) return <p>Loading...</p>
+    //Query que busca os dados de evolução depois da query acima
+    const { data: evolutionChainData, refetch: evolutionChainRefetch, isLoading: evolutionChainFetchIsLoading, isSuccess: evolutionChainFetchIsSuccess } = useQuery({
+        queryKey: ['evolutionChain', PokeInfo2FetchData],
+        queryFn: async () => await axios.get(PokeInfo2FetchData.data.evolution_chain.url),
+        enabled: !PokeInfo2FetchIsLoading,
+    })
+
+    // Somente quando a última query finaliza é que a aplicação renderiza
+    if (!PokeInfo2FetchIsSuccess) return <p>Loading...</p>
 
     if (error) return <p>An error has ocurred: {error.message}</p>
 
@@ -47,13 +59,14 @@ export default function MainSearch() {
         <div className='MainSearch'>
 
             <SearchBar
-                pokeSearch={pokeSearch}  
+                pokeSearch={pokeSearch}
                 setPokeSearch={setPokeSearch}
                 initialData={data}
-                PokeInfoRefetch={PokeInfoRefetch}
-                PokeInfo2Refetch={PokeInfo2Refetch}
-                searchedPokemonURL={searchedPokemonURL}
-                setSearchedPokemonURL={setSearchedPokemonURL} />
+                setSearchedPokemonURL={setSearchedPokemonURL}
+                evolutionChainRefetch={evolutionChainRefetch}
+                setPokemonID={setPokemonID}
+                PokeInfo2FetchData={PokeInfo2FetchData}
+                setEvolutionURL={setEvolutionURL} />
             
             <div className='MainContent'>
 
@@ -66,8 +79,10 @@ export default function MainSearch() {
                     PokeInfoFetchData={PokeInfoFetchData}
                     PokeInfo2FetchIsLoading={PokeInfo2FetchIsLoading}
                     PokeInfo2FetchData={PokeInfo2FetchData}
+                    PokeInfoFetchIs={PokeInfoFetchIs}
+                    evolutionChainData={evolutionChainData}
+                    evolutionChainFetchIsLoading={evolutionChainFetchIsLoading}
                     />
-                
             </div>
 
         </div>

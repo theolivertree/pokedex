@@ -15,3 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </QueryClientProvider>
   </React.StrictMode>,
 )
+
+queryClient.invalidateQueries({queryKey: ["PokeInfoFetch", "PokeInfo2Fetch", "evolutionChain"]})

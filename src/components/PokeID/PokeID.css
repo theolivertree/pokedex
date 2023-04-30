@@ -39,7 +39,7 @@
     border: solid black;
 }
 
-.TypeandStatsDiv {
+.TypeAndStatsDiv {
     border-radius: 15px;
     background-color: #c5c5c5;
     width: clamp(11em, 75%, 24em);
@@ -75,15 +75,75 @@
 }
 
 .grass {
-    background-color: #5fc480;
+    background-color: #68c32a;
 }
 
 .poison {
-    background-color: purple;
+    background-color: #914594;
 }
 
 .water {
-    background-color: blue;
+    background-color: #18558c;
+}
+
+.bug {
+    background-color: #89960a;
+}
+
+.dark {
+    background-color: #503729;
+}
+
+.dragon {
+    background-color: #755fdf;
+}
+
+.electric {
+    background-color: #f4b71e;
+}
+
+.fairy {
+    background-color: #dc98dd;
+}
+
+.fighting {
+    background-color: #602b1b;
+}
+
+.fire {
+    background-color: #c42100;
+}
+
+.flying {
+    background-color: #8590ed;
+}
+
+.ghost {
+    background-color: #403e93;
+}
+
+.ground {
+    background-color: #d0b25b;
+}
+
+.ice {
+    background-color: #6fd2f0;
+}
+
+.normal {
+    background-color: #c8c4bc;
+}
+
+.psychic {
+    background-color: #d7396c;
+}
+
+.rock {
+    background-color: #9d8937;
+}
+
+.steel {
+    background-color: #8f8e9f;
 }
 
 .StatsDiv {

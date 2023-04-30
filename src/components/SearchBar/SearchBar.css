@@ -55,6 +55,10 @@
     
 }
 
+.SearchBar button:active {
+    background-color: #05bbbe;;
+}
+
 .navS {
     flex: 1 0;
     display: flex;
